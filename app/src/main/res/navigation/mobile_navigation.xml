@@ -3,23 +3,35 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@id/navigation_search">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.example.testtaskandroid.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/navigation_search"
+        android:name="com.example.testtaskandroid.ui.search.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.testtaskandroid.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_favourites"
+        android:name="com.example.testtaskandroid.ui.favourites.FavouritesFragment"
+        android:label="fragment_favourites"
+        tools:layout="@layout/fragment_favourites" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.testtaskandroid.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_responses"
+        android:name="com.example.testtaskandroid.ui.responses.ResponsesFragment"
+        android:label="fragment_responses"
+        tools:layout="@layout/fragment_responses" />
+
+    <fragment
+        android:id="@+id/navigation_messages"
+        android:name="com.example.testtaskandroid.ui.messages.MessagesFragment"
+        android:label="fragment_messages"
+        tools:layout="@layout/fragment_messages" />
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.example.testtaskandroid.ui.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>
