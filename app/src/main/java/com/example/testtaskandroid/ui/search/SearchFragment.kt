@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import com.example.testtaskandroid.R
 
 class SearchFragment : Fragment() {
@@ -26,6 +27,10 @@ class SearchFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.fragment_search, container, false)
+        val view = inflater.inflate(R.layout.fragment_search, container, false)
+        val filterButton = view.findViewById<ImageButton>(R.id.filterButton)
+        filterButton.setOnClickListener{
+        }
+        return view
     }
 }
