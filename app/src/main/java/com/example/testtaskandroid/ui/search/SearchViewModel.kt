@@ -8,7 +8,7 @@ import com.example.testtaskandroid.data.Offer
 
 class SearchViewModel : ViewModel() {
     private val _offers = MutableLiveData<List<Offer>>()
-    val users: LiveData<List<Offer>> = _offers
+    val offers: LiveData<List<Offer>> = _offers
 
     fun getOffers(){
         val list = mutableListOf<Offer>()
@@ -22,7 +22,7 @@ class SearchViewModel : ViewModel() {
         )
         list.add(
             Offer(
-                Button("Text"),
+                null,
                 "2",
                 "l2",
                 "t2"

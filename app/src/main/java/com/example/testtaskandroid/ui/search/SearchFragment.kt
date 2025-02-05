@@ -6,6 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.testtaskandroid.databinding.FragmentSearchBinding
 
 class SearchFragment : Fragment() {
@@ -17,7 +20,9 @@ class SearchFragment : Fragment() {
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: SearchViewModel by viewModels()
+    private lateinit var linearLayoutManager : LinearLayoutManager
+
+    private val searchViewModel: SearchViewModel by viewModels()
 
     private val offersRecyclerAdapter by lazy {
         OffersRecyclerAdapter()
@@ -25,7 +30,17 @@ class SearchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        linearLayoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
+        binding.recyclerViewOffer.apply {
+            layoutManager = linearLayoutManager
+            adapter = offersRecyclerAdapter
+        }
 
+        searchViewModel.getOffers()
+
+        searchViewModel.offers.observe(viewLifecycleOwner, Observer {
+            offersRecyclerAdapter.submitList(it)
+        })
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
