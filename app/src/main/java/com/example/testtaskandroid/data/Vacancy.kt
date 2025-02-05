@@ -21,7 +21,7 @@ data class Vacancy(
     @Json(name = "isFavorite")
     val isFavorite: Boolean,
     @Json(name = "lookingNumber")
-    val lookingNumber: Int,
+    val lookingNumber: Int?,
     @Json(name = "publishedDate")
     val publishedDate: String,
     @Json(name = "questions")
