@@ -6,8 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
-import com.example.testtaskandroid.R
+import com.example.testtaskandroid.databinding.FragmentSearchBinding
 
 class SearchFragment : Fragment() {
 
@@ -15,22 +14,32 @@ class SearchFragment : Fragment() {
         fun newInstance() = SearchFragment()
     }
 
+    private var _binding: FragmentSearchBinding? = null
+    private val binding get() = _binding!!
+
     private val viewModel: SearchViewModel by viewModels()
+
+    private val offersRecyclerAdapter by lazy {
+        OffersRecyclerAdapter()
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        // TODO: Use the ViewModel
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view = inflater.inflate(R.layout.fragment_search, container, false)
-        val filterButton = view.findViewById<ImageButton>(R.id.filterButton)
+        _binding = FragmentSearchBinding.inflate(inflater, container, false)
+        val filterButton = binding.filterButton
         filterButton.setOnClickListener{
         }
-        return view
+        return binding.root
     }
 }

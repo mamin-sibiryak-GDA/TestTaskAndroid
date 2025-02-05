@@ -5,4 +5,9 @@
     <string name="title_responses">Отклики</string>
     <string name="title_messages">Сообщения</string>
     <string name="title_profile">Профиль</string>
+    <string name="button_offer_placeholder">text_button_offer</string>
+    <string name="offer_placeholder">text_offer</string>
+    <string name="icon_offer_description">Offer Icon</string>
+    <string name="filter_button_description">Filter Button</string>
+
 </resources>
