@@ -7,5 +7,5 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class Button(
     @Json(name = "text")
-    val text: String
+    val text: String?
 )
