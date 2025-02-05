@@ -14,6 +14,7 @@ object ApiClient {
 
     val retrofit by lazy {
         Retrofit.Builder()
+            .baseUrl("https://drive.usercontent.google.com/u/0/")
             .client(httpClient)
             .addConverterFactory(MoshiConverterFactory.create())
             .build()

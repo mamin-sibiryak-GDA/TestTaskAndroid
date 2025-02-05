@@ -11,7 +11,7 @@ data class Offer(
     @Json(name = "id")
     val id: String?,
     @Json(name = "link")
-    val link: String?,
+    val link: String,
     @Json(name = "title")
-    val title: String?
+    val title: String
 )

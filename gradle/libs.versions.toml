@@ -18,6 +18,7 @@ retrofitVersion = "2.11.0"
 koinVersion = "4.0.2"
 moshiKotlinCodegen = "1.15.2"
 moshiKotlin = "1.15.2"
+lifecycleViewmodelKtxVersion = "2.9.0-alpha09"
 
 [libraries]
 retrofit-android = {module = "com.squareup.retrofit2:retrofit", version.ref = "retrofitVersion"}
@@ -40,6 +41,7 @@ androidx-legacy-support-v4 = { group = "androidx.legacy", name = "legacy-support
 androidx-fragment-ktx = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "fragmentKtx" }
 moshi-kotlin-codegen = { group = "com.squareup.moshi", name = "moshi-kotlin-codegen", version.ref = "moshiKotlinCodegen" }
 moshi-kotlin = { group = "com.squareup.moshi", name = "moshi-kotlin", version.ref = "moshiKotlin" }
+lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtxVersion" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
