@@ -14,6 +14,7 @@
         <vector
             android:width="32dp"
             android:height="32dp"
+            android:strokeWidth="1"
             android:viewportWidth="32.0"
             android:viewportHeight="32.0">
             <path

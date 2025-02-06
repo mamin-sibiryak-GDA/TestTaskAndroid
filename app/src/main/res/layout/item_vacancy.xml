@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="16dp"
+    app:cardBackgroundColor="@android:color/transparent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/item_vacancy_style">
+
+        <TextView
+            android:id="@+id/textHowManyWatching"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/how_many_watching"
+            android:textColor="@color/green"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textVacancyTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/vacancy_title"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textHowManyWatching" />
+
+        <TextView
+            android:id="@+id/textVacancySalary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/vacancy_salary"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textVacancyTitle" />
+
+        <TextView
+            android:id="@+id/textVacancyCity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/vacancy_city"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textVacancySalary" />
+
+        <TextView
+            android:id="@+id/textCompanyName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/vacancy_company_name"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textVacancyCity" />
+
+        <ImageView
+            android:id="@+id/imageVacancyExperience"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/company_approved"
+            app:layout_constraintBottom_toBottomOf="@+id/textVacancyExperience"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textVacancyExperience"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/ic_vacancy_experience" />
+
+        <TextView
+            android:id="@+id/textVacancyExperience"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/vacancy_experience"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toEndOf="@+id/imageVacancyExperience"
+            app:layout_constraintTop_toBottomOf="@+id/textCompanyName" />
+
+        <TextView
+            android:id="@+id/textVacancyPublicationData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/vacancy_publication_date"
+            android:textColor="@color/grey3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textVacancyExperience"
+            tools:ignore="TextContrastCheck" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buttonVacancy"
+            android:layout_width="0dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/vacancy_button_style"
+            android:text="@string/button_vacancy"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textVacancyPublicationData"
+            tools:ignore="TouchTargetSizeCheck,VisualLintButtonSize,TextContrastCheck" />
+
+        <ImageButton
+            android:id="@+id/buttonIsFavourite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@color/grey1"
+            android:contentDescription="@string/button_make_favourite"
+            android:src="@drawable/ic_favourites_24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TouchTargetSizeCheck,RedundantDescriptionCheck" />
+
+        <ImageView
+            android:id="@+id/imageCompanyApproved"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:contentDescription="@string/company_approved"
+            app:layout_constraintBottom_toBottomOf="@+id/textCompanyName"
+            app:layout_constraintStart_toEndOf="@+id/textCompanyName"
+            app:layout_constraintTop_toTopOf="@+id/textCompanyName"
+            android:src="@drawable/ic_approved_company" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

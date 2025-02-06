@@ -20,7 +20,8 @@ class SearchFragment : Fragment() {
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var linearLayoutManager : LinearLayoutManager
+    private lateinit var linearLayoutManagerOffers : LinearLayoutManager
+    private lateinit var linearLayoutManagerVacancies : LinearLayoutManager
 
     private val searchViewModel: SearchViewModel by viewModels()
 
@@ -28,11 +29,15 @@ class SearchFragment : Fragment() {
         OffersRecyclerAdapter()
     }
 
+    private val vacanciesRecyclerAdapter by lazy {
+        VacanciesRecyclerAdapter()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        linearLayoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
+        linearLayoutManagerOffers = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
         binding.recyclerViewOffer.apply {
-            layoutManager = linearLayoutManager
+            layoutManager = linearLayoutManagerOffers
             adapter = offersRecyclerAdapter
         }
 
@@ -40,6 +45,20 @@ class SearchFragment : Fragment() {
 
         searchViewModel.offers.observe(viewLifecycleOwner, Observer {
             offersRecyclerAdapter.submitList(it)
+        })
+
+
+
+        linearLayoutManagerVacancies = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+        binding.recyclerViewVacancy.apply {
+            layoutManager = linearLayoutManagerVacancies
+            adapter = vacanciesRecyclerAdapter
+        }
+
+        searchViewModel.getVacancies()
+
+        searchViewModel.vacancies.observe(viewLifecycleOwner, Observer {
+            vacanciesRecyclerAdapter.submitList(it)
         })
     }
 
@@ -54,6 +73,7 @@ class SearchFragment : Fragment() {
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
         val filterButton = binding.filterButton
         filterButton.setOnClickListener{
+            binding.recyclerViewOffer.visibility = View.GONE
         }
         return binding.root
     }

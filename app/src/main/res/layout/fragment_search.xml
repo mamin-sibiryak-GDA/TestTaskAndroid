@@ -5,20 +5,21 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.search.SearchFragment">
+    tools:context=".ui.search.SearchFragment"
+    tools:ignore="VisualLintTextFieldSize">
 
-    <SearchView
+    <androidx.appcompat.widget.SearchView
         android:id="@+id/searchView"
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/rounded_element"
-        android:searchIcon="@drawable/ic_search_24dp"
-        android:closeIcon="@drawable/ic_clear_24dp"
-        android:iconifiedByDefault="false"
-        android:searchHintIcon="@null"
-        android:queryHint="Должность, ключевые слова"
+        app:searchIcon="@drawable/ic_search_24dp"
+        app:closeIcon="@drawable/ic_clear_24dp"
+        app:iconifiedByDefault="false"
+        app:searchHintIcon="@null"
+        app:queryHint="Должность, ключевые слова"
         app:layout_constraintEnd_toStartOf="@id/filterButton"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,7 +34,8 @@
         android:contentDescription="@string/filter_button_description"
         android:src="@drawable/ic_filter_30dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="RedundantDescriptionCheck" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewOffer"
@@ -48,5 +50,53 @@
         app:layout_constraintTop_toBottomOf="@+id/searchView"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:orientation="horizontal"/>
+
+    <TextView
+        android:id="@+id/vacancyForYou"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/vacancy_for_you"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewOffer" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewVacancy"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vacancyForYou"
+        app:layout_constraintBottom_toTopOf="@id/buttonMoreVacancies"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonMoreVacancies"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/vacancy_more_style"
+        android:text="@string/button_more_vacancy"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewVacancy"
+        app:layout_constraintVertical_bias="1"
+        tools:ignore="VisualLintButtonSize,TextContrastCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

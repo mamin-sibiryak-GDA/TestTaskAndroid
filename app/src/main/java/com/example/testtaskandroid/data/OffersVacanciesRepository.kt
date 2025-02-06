@@ -15,4 +15,11 @@ class OffersVacanciesRepository {
             response.body()?.offers?: listOf()
         }
     }
+
+    suspend fun getVacancies(): List<Vacancy> {
+        return withContext(Dispatchers.IO) {
+            val response = apiService.getVacancies().execute()
+            response.body()?.vacancies?: listOf()
+        }
+    }
 }

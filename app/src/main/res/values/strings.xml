@@ -9,5 +9,17 @@
     <string name="offer_placeholder">text_offer</string>
     <string name="icon_offer_description">Offer Icon</string>
     <string name="filter_button_description">Filter Button</string>
+    <string name="vacancy_for_you">Вакансии для вас</string>
+    <string name="button_make_favourite">Make Favourite Button</string>
+    <string name="how_many_watching">how_many_watching</string>
+    <string name="vacancy_title">vacancy_title</string>
+    <string name="vacancy_city">vacancy_city</string>
+    <string name="vacancy_experience">vacancy_experience</string>
+    <string name="vacancy_publication_date">vacancy_publication_data</string>
+    <string name="vacancy_company_name">vacancy_company_name</string>
+    <string name="company_approved">Company Approved Sign</string>
+    <string name="vacancy_salary">vacancy_salary</string>
+    <string name="button_vacancy">Откликнуться</string>
+    <string name="button_more_vacancy">more_vacancy</string>
 
 </resources>
