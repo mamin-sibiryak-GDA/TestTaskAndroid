@@ -1,4 +1,4 @@
-package com.example.testtaskandroid.ui.search
+package com.example.testtaskandroid.utils
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -13,7 +13,9 @@ import com.example.testtaskandroid.data.Vacancy
 import com.example.testtaskandroid.databinding.ItemVacancyBinding
 
 
-class VacanciesRecyclerAdapter: ListAdapter<Vacancy, VacanciesRecyclerAdapter.VacanciesRecyclerViewHolder>(VacanciesDiffUtilCallback()) {
+class VacanciesRecyclerAdapter: ListAdapter<Vacancy, VacanciesRecyclerAdapter.VacanciesRecyclerViewHolder>(
+    VacanciesDiffUtilCallback()
+) {
 
     class VacanciesRecyclerViewHolder(val binding: ItemVacancyBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -41,7 +43,7 @@ class VacanciesRecyclerAdapter: ListAdapter<Vacancy, VacanciesRecyclerAdapter.Va
         if (item.isFavorite)
             holder.binding.buttonIsFavourite.setImageResource(R.drawable.ic_vacancy_liked)
         if (item.lookingNumber != null)
-            holder.binding.textHowManyWatching.text = "Сейчас просматривает " + item.lookingNumber.toString() + " человек"
+            holder.binding.textHowManyWatching.text = "Сейчас просматривает " + item.lookingNumber.toString() + " " + peopleDeclension(item.lookingNumber)
         else
             holder.binding.textHowManyWatching.visibility = View.GONE
         holder.binding.textVacancyTitle.text = item.title.trim()
@@ -52,7 +54,7 @@ class VacanciesRecyclerAdapter: ListAdapter<Vacancy, VacanciesRecyclerAdapter.Va
         holder.binding.textVacancyCity.text = item.address.town
         holder.binding.textCompanyName.text = item.company
         holder.binding.textVacancyExperience.text = item.experience.previewText
-        holder.binding.textVacancyPublicationData.text = item.publishedDate
+        holder.binding.textVacancyPublicationData.text = "Опубликовано " + dateDeclension(item.publishedDate)
         holder.itemView.setOnClickListener {
         }
         holder.binding.buttonIsFavourite.setOnClickListener {

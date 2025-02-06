@@ -1,4 +1,4 @@
-package com.example.testtaskandroid.ui.search
+package com.example.testtaskandroid.utils
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -16,7 +16,9 @@ import com.example.testtaskandroid.databinding.ItemOfferBinding
 
 
 @Suppress("DEPRECATION")
-class OffersRecyclerAdapter: ListAdapter<Offer, OffersRecyclerAdapter.OffersRecyclerViewHolder>(OffersDiffUtilCallback()) {
+class OffersRecyclerAdapter: ListAdapter<Offer, OffersRecyclerAdapter.OffersRecyclerViewHolder>(
+    OffersDiffUtilCallback()
+) {
 
     class OffersRecyclerViewHolder(val binding: ItemOfferBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -44,7 +46,6 @@ class OffersRecyclerAdapter: ListAdapter<Offer, OffersRecyclerAdapter.OffersRecy
             "near_vacancies" -> holder.binding.iconOffer.setImageResource(R.drawable.ic_offer_near_vacancies)
             "level_up_resume" -> holder.binding.iconOffer.setImageResource(R.drawable.ic_offer_level_up_resume)
             "temporary_job" -> holder.binding.iconOffer.setImageResource(R.drawable.ic_offer_temporary_job)
-
         }
         holder.binding.textOffer.text = item.title.trim()
         holder.binding.textButtonOffer.text = item.button?.text?.trim()

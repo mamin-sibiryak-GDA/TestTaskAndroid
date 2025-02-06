@@ -16,23 +16,48 @@ class SearchViewModel : ViewModel() {
     private val _vacancies = MutableLiveData<List<Vacancy>>()
     val vacancies: LiveData<List<Vacancy>> = _vacancies
 
-    val offersVacanciesRepository by lazy {
+    private val _numOfVacancies = MutableLiveData<Int>()
+    val numOfVacancies: LiveData<Int> = _numOfVacancies
+
+    private val _isFullSearch = MutableLiveData<Boolean>(false)
+    val isFullSearch: LiveData<Boolean> = _isFullSearch
+
+    private val offersVacanciesRepository by lazy {
         OffersVacanciesRepository()
     }
 
-    fun getOffers(){
-
+    fun getOffers() {
         viewModelScope.launch {
             val response = offersVacanciesRepository.getOffers()
             _offers.postValue(response)
         }
     }
 
-    fun getVacancies(){
+    fun getVacancies() {
+        viewModelScope.launch {
+            if (_isFullSearch.value == false) {
+                val response = offersVacanciesRepository.getVacancies()
+                _vacancies.postValue(response.take(3))
+            }
+            else {
+                val response = offersVacanciesRepository.getVacancies()
+                _vacancies.postValue(response)
+            }
+        }
+    }
 
+    fun getNumOfVacancies() {
         viewModelScope.launch {
             val response = offersVacanciesRepository.getVacancies()
-            _vacancies.postValue(response)
+            _numOfVacancies.postValue(response.size)
         }
+    }
+
+    fun changeIsFullSearchTrue() {
+        _isFullSearch.postValue(true)
+    }
+
+    fun changeIsFullSearchFalse() {
+        _isFullSearch.postValue(false)
     }
 }

@@ -21,5 +21,10 @@
     <string name="vacancy_salary">vacancy_salary</string>
     <string name="button_vacancy">Откликнуться</string>
     <string name="button_more_vacancy">more_vacancy</string>
+    <string name="sort">По соответствию</string>
+    <string name="loading">· · ·</string>
+    <string name="image_sort">Sort</string>
+    <string name="button_back">Back</string>
+    <string name="text_favourite">Избранное</string>
 
 </resources>
