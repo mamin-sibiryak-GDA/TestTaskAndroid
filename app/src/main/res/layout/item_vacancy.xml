@@ -132,7 +132,7 @@
             android:layout_marginEnd="16dp"
             android:background="@color/grey1"
             android:contentDescription="@string/button_make_favourite"
-            android:src="@drawable/ic_favourites_24dp"
+            android:src="@drawable/ic_favourites"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="TouchTargetSizeCheck,RedundantDescriptionCheck" />

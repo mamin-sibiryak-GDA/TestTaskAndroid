@@ -7,10 +7,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.testtaskandroid.databinding.FragmentFavouritesBinding
+import com.example.testtaskandroid.ui.MainViewModel
 import com.example.testtaskandroid.utils.VacanciesRecyclerAdapter
 import com.example.testtaskandroid.utils.vacancyDeclension
 
@@ -26,6 +28,7 @@ class FavouritesFragment : Fragment() {
     private lateinit var linearLayoutManagerVacanciesFavourites : LinearLayoutManager
 
     private val favouritesViewModel: FavouritesViewModel by viewModels()
+    private val mainViewModel: MainViewModel by activityViewModels()
 
     private val vacanciesRecyclerAdapter by lazy {
         VacanciesRecyclerAdapter()
@@ -41,11 +44,10 @@ class FavouritesFragment : Fragment() {
             adapter = vacanciesRecyclerAdapter
         }
 
-        favouritesViewModel.getVacanciesFavourites()
-        favouritesViewModel.vacancies.observe(viewLifecycleOwner, Observer {
+        mainViewModel.vacanciesFavourites.observe(viewLifecycleOwner, Observer {
             vacanciesRecyclerAdapter.submitList(it)
         })
-        favouritesViewModel.numOfVacancies.observe(viewLifecycleOwner, Observer {
+        mainViewModel.numOfVacanciesFavourites.observe(viewLifecycleOwner, Observer {
             binding.numOfVacanciesFavourites.text = it.toString() + " " + vacancyDeclension(it)
         })
     }

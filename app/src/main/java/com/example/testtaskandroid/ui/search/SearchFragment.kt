@@ -8,10 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.testtaskandroid.databinding.FragmentSearchBinding
+import com.example.testtaskandroid.ui.MainViewModel
 import com.example.testtaskandroid.utils.OffersRecyclerAdapter
 import com.example.testtaskandroid.utils.VacanciesRecyclerAdapter
 import com.example.testtaskandroid.utils.vacancyDeclension
@@ -29,6 +31,7 @@ class SearchFragment : Fragment() {
     private lateinit var linearLayoutManagerVacancies : LinearLayoutManager
 
     private val searchViewModel: SearchViewModel by viewModels()
+    private val mainViewModel: MainViewModel by activityViewModels()
 
     private val offersRecyclerAdapter by lazy {
         OffersRecyclerAdapter()
@@ -58,11 +61,13 @@ class SearchFragment : Fragment() {
             adapter = vacanciesRecyclerAdapter
         }
 
-        searchViewModel.getVacancies()
-        searchViewModel.vacancies.observe(viewLifecycleOwner, Observer {
-            vacanciesRecyclerAdapter.submitList(it)
+        mainViewModel.vacancies.observe(viewLifecycleOwner, Observer {
+            if (searchViewModel.isFullSearch.value == false)
+                vacanciesRecyclerAdapter.submitList(it.take(3))
+            else
+                vacanciesRecyclerAdapter.submitList(it)
         })
-        searchViewModel.numOfVacancies.observe(viewLifecycleOwner, Observer {
+        mainViewModel.numOfVacancies.observe(viewLifecycleOwner, Observer {
             binding.buttonMoreVacancies.text = "Ещe " + (it-3).toString() + " " + vacancyDeclension((it-3))
             binding.numOfVacancies.text = it.toString() + " " + vacancyDeclension(it)
         })
@@ -75,8 +80,7 @@ class SearchFragment : Fragment() {
         }
         searchViewModel.isFullSearch.observe(viewLifecycleOwner, Observer {
             if (it == false) {
-                searchViewModel.getVacancies()
-                vacanciesRecyclerAdapter.submitList(searchViewModel.vacancies.value)
+                vacanciesRecyclerAdapter.submitList(mainViewModel.vacancies.value?.take(3))
 
                 binding.numOfVacancies.visibility = View.GONE
                 binding.imageSort.visibility = View.GONE
@@ -91,8 +95,7 @@ class SearchFragment : Fragment() {
                 binding.recyclerViewOffer.visibility = View.VISIBLE
             }
             else {
-                searchViewModel.getVacancies()
-                vacanciesRecyclerAdapter.submitList(searchViewModel.vacancies.value)
+                vacanciesRecyclerAdapter.submitList(mainViewModel.vacancies.value)
 
                 binding.buttonMoreVacancies.visibility = View.GONE
                 binding.vacancyForYou.visibility = View.GONE
