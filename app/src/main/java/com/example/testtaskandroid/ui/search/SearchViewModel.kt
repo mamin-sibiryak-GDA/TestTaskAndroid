@@ -35,20 +35,12 @@ class SearchViewModel : ViewModel() {
 
     fun getVacancies() {
         viewModelScope.launch {
-            if (_isFullSearch.value == false) {
-                val response = offersVacanciesRepository.getVacancies()
-                _vacancies.postValue(response.take(3))
-            }
-            else {
-                val response = offersVacanciesRepository.getVacancies()
-                _vacancies.postValue(response)
-            }
-        }
-    }
-
-    fun getNumOfVacancies() {
-        viewModelScope.launch {
             val response = offersVacanciesRepository.getVacancies()
+            if (_isFullSearch.value == false)
+                _vacancies.postValue(response.take(3))
+            else
+                _vacancies.postValue(response)
+
             _numOfVacancies.postValue(response.size)
         }
     }

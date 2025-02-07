@@ -45,8 +45,6 @@ class FavouritesFragment : Fragment() {
         favouritesViewModel.vacancies.observe(viewLifecycleOwner, Observer {
             vacanciesRecyclerAdapter.submitList(it)
         })
-
-        favouritesViewModel.getNumOfVacanciesFavourites()
         favouritesViewModel.numOfVacancies.observe(viewLifecycleOwner, Observer {
             binding.numOfVacanciesFavourites.text = it.toString() + " " + vacancyDeclension(it)
         })

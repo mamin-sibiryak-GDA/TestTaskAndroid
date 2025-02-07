@@ -62,8 +62,6 @@ class SearchFragment : Fragment() {
         searchViewModel.vacancies.observe(viewLifecycleOwner, Observer {
             vacanciesRecyclerAdapter.submitList(it)
         })
-
-        searchViewModel.getNumOfVacancies()
         searchViewModel.numOfVacancies.observe(viewLifecycleOwner, Observer {
             binding.buttonMoreVacancies.text = "Ещe " + (it-3).toString() + " " + vacancyDeclension((it-3))
             binding.numOfVacancies.text = it.toString() + " " + vacancyDeclension(it)

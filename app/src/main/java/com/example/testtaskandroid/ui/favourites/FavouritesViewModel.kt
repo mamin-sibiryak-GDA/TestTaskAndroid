@@ -34,12 +34,6 @@ class FavouritesViewModel : ViewModel() {
         viewModelScope.launch {
             val response = offersVacanciesRepository.getVacancies()
             _vacancies.postValue(getFavourites(response))
-        }
-    }
-
-    fun getNumOfVacanciesFavourites() {
-        viewModelScope.launch {
-            val response = offersVacanciesRepository.getVacancies()
             _numOfVacancies.postValue(getFavourites(response).size)
         }
     }
