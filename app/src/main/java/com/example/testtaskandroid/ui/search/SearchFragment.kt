@@ -10,25 +10,30 @@ import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.testtaskandroid.R
 import com.example.testtaskandroid.databinding.FragmentSearchBinding
+import com.example.testtaskandroid.ui.ClickListener
 import com.example.testtaskandroid.ui.MainViewModel
-import com.example.testtaskandroid.utils.OffersRecyclerAdapter
-import com.example.testtaskandroid.utils.VacanciesRecyclerAdapter
+import com.example.testtaskandroid.ui.OffersRecyclerAdapter
+import com.example.testtaskandroid.ui.VacanciesRecyclerAdapter
 import com.example.testtaskandroid.utils.vacancyDeclension
 
-class SearchFragment : Fragment() {
+class SearchFragment : Fragment(), ClickListener {
 
     companion object {
         fun newInstance() = SearchFragment()
     }
 
+    private lateinit var listener: ClickListener
+
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var linearLayoutManagerOffers : LinearLayoutManager
-    private lateinit var linearLayoutManagerVacancies : LinearLayoutManager
+    private lateinit var linearLayoutManagerOffers: LinearLayoutManager
+    private lateinit var linearLayoutManagerVacancies: LinearLayoutManager
 
     private val searchViewModel: SearchViewModel by viewModels()
     private val mainViewModel: MainViewModel by activityViewModels()
@@ -38,7 +43,7 @@ class SearchFragment : Fragment() {
     }
 
     private val vacanciesRecyclerAdapter by lazy {
-        VacanciesRecyclerAdapter()
+        VacanciesRecyclerAdapter(listener)
     }
 
     @SuppressLint("SetTextI18n")
@@ -50,8 +55,7 @@ class SearchFragment : Fragment() {
             adapter = offersRecyclerAdapter
         }
 
-        searchViewModel.getOffers()
-        searchViewModel.offers.observe(viewLifecycleOwner, Observer {
+        mainViewModel.offers.observe(viewLifecycleOwner, Observer {
             offersRecyclerAdapter.submitList(it)
         })
 
@@ -66,10 +70,9 @@ class SearchFragment : Fragment() {
                 vacanciesRecyclerAdapter.submitList(it.take(3))
             else
                 vacanciesRecyclerAdapter.submitList(it)
-        })
-        mainViewModel.numOfVacancies.observe(viewLifecycleOwner, Observer {
-            binding.buttonMoreVacancies.text = "Ещe " + (it-3).toString() + " " + vacancyDeclension((it-3))
-            binding.numOfVacancies.text = it.toString() + " " + vacancyDeclension(it)
+            binding.buttonMoreVacancies.text =
+                "Ещe " + (it.size - 3).toString() + " " + vacancyDeclension((it.size - 3))
+            binding.numOfVacancies.text = it.size.toString() + " " + vacancyDeclension(it.size)
         })
 
         binding.buttonMoreVacancies.setOnClickListener {
@@ -87,21 +90,22 @@ class SearchFragment : Fragment() {
                 binding.textSort.visibility = View.GONE
                 binding.buttonBack.visibility = View.GONE
 
-                val params = binding.recyclerViewVacancy.layoutParams as ConstraintLayout.LayoutParams
+                val params =
+                    binding.recyclerViewVacancy.layoutParams as ConstraintLayout.LayoutParams
                 params.topToBottom = binding.vacancyForYou.id
 
                 binding.buttonMoreVacancies.visibility = View.VISIBLE
                 binding.vacancyForYou.visibility = View.VISIBLE
                 binding.recyclerViewOffer.visibility = View.VISIBLE
-            }
-            else {
+            } else {
                 vacanciesRecyclerAdapter.submitList(mainViewModel.vacancies.value)
 
                 binding.buttonMoreVacancies.visibility = View.GONE
                 binding.vacancyForYou.visibility = View.GONE
                 binding.recyclerViewOffer.visibility = View.GONE
 
-                val params = binding.recyclerViewVacancy.layoutParams as ConstraintLayout.LayoutParams
+                val params =
+                    binding.recyclerViewVacancy.layoutParams as ConstraintLayout.LayoutParams
                 params.topToBottom = binding.numOfVacancies.id
 
                 binding.buttonBack.visibility = View.VISIBLE
@@ -117,8 +121,20 @@ class SearchFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
-        binding.filterButton.setOnClickListener{
-        }
+        listener = this
         return binding.root
+    }
+
+    override fun onVacancyClickListener(view: View) {
+        val navController = Navigation.findNavController(view)
+        navController.navigate(R.id.navigation_vacancy)
+    }
+
+    // Строки с проверкой пропадают при vacanciesRecyclerAdapter.notifyItemChanged(pos)
+    // Даже еслм никакие данные не менять всё равно пропадают строки
+    // Чем это вызвано без понятия
+    override fun onFavouriteClickListener(pos: Int) {
+        vacanciesRecyclerAdapter.notifyItemChanged(pos)
+        mainViewModel.wakeUp()
     }
 }

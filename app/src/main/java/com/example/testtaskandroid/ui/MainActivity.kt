@@ -42,15 +42,16 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
+        mainViewModel.getOffers()
         mainViewModel.getVacancies()
-        mainViewModel.getVacanciesFavourites()
 
         val badge = navView.getOrCreateBadge(R.id.navigation_favourites)
         badge.backgroundColor = getColor(R.color.red)
-        mainViewModel.numOfVacanciesFavourites.observe(this, Observer {
-            if (it != 0) {
+        mainViewModel.vacancies.observe(this, Observer {
+            val num = (it.filter { it.isFavorite }).size
+            if (num != 0) {
                 badge.isVisible = true
-                badge.number = it
+                badge.number = (it.filter { it.isFavorite }).size
             }
             else
                 badge.isVisible = false

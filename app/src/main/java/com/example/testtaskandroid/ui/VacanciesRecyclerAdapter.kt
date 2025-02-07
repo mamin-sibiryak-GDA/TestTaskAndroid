@@ -1,4 +1,4 @@
-package com.example.testtaskandroid.utils
+package com.example.testtaskandroid.ui
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -9,12 +9,14 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.testtaskandroid.R
-import com.example.testtaskandroid.data.Vacancy
+import com.example.testtaskandroid.data.entities.Vacancy
 import com.example.testtaskandroid.databinding.ItemVacancyBinding
+import com.example.testtaskandroid.utils.dateDeclension
+import com.example.testtaskandroid.utils.peopleDeclension
 
 
-class VacanciesRecyclerAdapter: ListAdapter<Vacancy, VacanciesRecyclerAdapter.VacanciesRecyclerViewHolder>(
-    VacanciesDiffUtilCallback()
+class VacanciesRecyclerAdapter(private val clickListener: ClickListener): ListAdapter<Vacancy, VacanciesRecyclerAdapter.VacanciesRecyclerViewHolder>(
+    VacanciesDiffUtilCallback(),
 ) {
 
     class VacanciesRecyclerViewHolder(val binding: ItemVacancyBinding) : RecyclerView.ViewHolder(binding.root)
@@ -39,25 +41,30 @@ class VacanciesRecyclerAdapter: ListAdapter<Vacancy, VacanciesRecyclerAdapter.Va
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: VacanciesRecyclerViewHolder, position: Int) {
-        val item  = getItem(position)
+        val item = getItem(position)
         if (item.isFavorite)
             holder.binding.buttonIsFavourite.setImageResource(R.drawable.ic_vacancy_liked)
-        if (item.lookingNumber != null)
-            holder.binding.textHowManyWatching.text = "Сейчас просматривает " + item.lookingNumber.toString() + " " + peopleDeclension(item.lookingNumber)
         else
+            holder.binding.buttonIsFavourite.setImageResource(R.drawable.ic_favourites)
+        if (item.lookingNumber == null)
             holder.binding.textHowManyWatching.visibility = View.GONE
-        holder.binding.textVacancyTitle.text = item.title.trim()
-        if (item.salary.short != null)
-            holder.binding.textVacancySalary.text = item.salary.short
         else
+            holder.binding.textHowManyWatching.text = "Сейчас просматривает " + item.lookingNumber.toString() + " " + peopleDeclension(item.lookingNumber)
+        holder.binding.textVacancyTitle.text = item.title.trim()
+        if (item.salary.short == null)
             holder.binding.textVacancySalary.visibility = View.GONE
+        else
+            holder.binding.textVacancySalary.text = item.salary.short
         holder.binding.textVacancyCity.text = item.address.town
         holder.binding.textCompanyName.text = item.company
         holder.binding.textVacancyExperience.text = item.experience.previewText
         holder.binding.textVacancyPublicationData.text = "Опубликовано " + dateDeclension(item.publishedDate)
         holder.itemView.setOnClickListener {
+            clickListener.onVacancyClickListener(it)
         }
         holder.binding.buttonIsFavourite.setOnClickListener {
+            item.isFavorite = !item.isFavorite
+            clickListener.onFavouriteClickListener(position)
         }
         holder.binding.buttonVacancy.setOnClickListener {
         }

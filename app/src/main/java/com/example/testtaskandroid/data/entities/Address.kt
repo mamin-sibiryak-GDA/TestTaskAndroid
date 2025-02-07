@@ -1,4 +1,4 @@
-package com.example.testtaskandroid.data
+package com.example.testtaskandroid.data.entities
 
 
 import com.squareup.moshi.Json

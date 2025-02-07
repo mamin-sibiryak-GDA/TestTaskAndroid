@@ -9,13 +9,21 @@
         android:id="@+id/navigation_search"
         android:name="com.example.testtaskandroid.ui.search.SearchFragment"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_navigation_search_to_navigation_vacancy"
+            app:destination="@id/navigation_vacancy" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_favourites"
         android:name="com.example.testtaskandroid.ui.favourites.FavouritesFragment"
         android:label="fragment_favourites"
-        tools:layout="@layout/fragment_favourites" />
+        tools:layout="@layout/fragment_favourites" >
+        <action
+            android:id="@+id/action_navigation_favourites_to_navigation_vacancy"
+            app:destination="@id/navigation_vacancy" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_responses"
@@ -34,4 +42,9 @@
         android:name="com.example.testtaskandroid.ui.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/navigation_vacancy"
+        android:name="com.example.testtaskandroid.ui.vacancy.VacancyFragment"
+        android:label="fragment_vacancy"
+        tools:layout="@layout/fragment_vacancy" />
 </navigation>

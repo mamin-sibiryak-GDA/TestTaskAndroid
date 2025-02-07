@@ -1,4 +1,4 @@
-package com.example.testtaskandroid.utils
+package com.example.testtaskandroid.ui
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.testtaskandroid.R
-import com.example.testtaskandroid.data.Offer
+import com.example.testtaskandroid.data.entities.Offer
 import com.example.testtaskandroid.databinding.ItemOfferBinding
 
 

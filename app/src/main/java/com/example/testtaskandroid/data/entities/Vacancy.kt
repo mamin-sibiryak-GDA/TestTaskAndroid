@@ -1,4 +1,4 @@
-package com.example.testtaskandroid.data
+package com.example.testtaskandroid.data.entities
 
 
 import com.squareup.moshi.Json
@@ -19,7 +19,7 @@ data class Vacancy(
     @Json(name = "id")
     val id: String,
     @Json(name = "isFavorite")
-    val isFavorite: Boolean,
+    var isFavorite: Boolean,
     @Json(name = "lookingNumber")
     val lookingNumber: Int?,
     @Json(name = "publishedDate")

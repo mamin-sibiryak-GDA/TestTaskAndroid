@@ -1,4 +1,4 @@
-package com.example.testtaskandroid.data
+package com.example.testtaskandroid.data.remote
 
 import retrofit2.Call
 import retrofit2.http.GET
