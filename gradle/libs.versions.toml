@@ -1,5 +1,6 @@
 [versions]
 agp = "8.8.0"
+hiltAndroid = "2.55"
 kotlin = "2.1.10"
 coreKtx = "1.15.0"
 junit = "4.13.2"
@@ -15,15 +16,14 @@ navigationUiKtx = "2.8.6"
 legacySupportV4 = "1.0.0"
 fragmentKtx = "1.8.5"
 retrofitVersion = "2.11.0"
-koinVersion = "4.0.2"
 moshiKotlinCodegen = "1.15.2"
 moshiKotlin = "1.15.2"
 
 [libraries]
+hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroid" }
+hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hiltAndroid" }
 retrofit-android = {module = "com.squareup.retrofit2:retrofit", version.ref = "retrofitVersion"}
 retrofit-android-converter = {module = "com.squareup.retrofit2:converter-moshi", version.ref = "retrofitVersion"}
-koin-core = {module = "io.insert-koin:koin-core", version.ref = "koinVersion"}
-koin-android = {module = "io.insert-koin:koin-android", version.ref = "koinVersion"}
 
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -44,4 +44,3 @@ moshi-kotlin = { group = "com.squareup.moshi", name = "moshi-kotlin", version.re
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-

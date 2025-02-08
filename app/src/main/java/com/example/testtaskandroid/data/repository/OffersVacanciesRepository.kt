@@ -5,8 +5,9 @@ import com.example.testtaskandroid.data.entities.Offer
 import com.example.testtaskandroid.data.entities.Vacancy
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class OffersVacanciesRepository {
+class OffersVacanciesRepository @Inject constructor(){
 
     private val apiService by lazy {
         ApiClient.apiService

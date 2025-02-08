@@ -1,7 +1,6 @@
 package com.example.testtaskandroid.ui.favourites
 
 import android.annotation.SuppressLint
-import androidx.fragment.app.viewModels
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -18,7 +17,9 @@ import com.example.testtaskandroid.ui.ClickListener
 import com.example.testtaskandroid.ui.MainViewModel
 import com.example.testtaskandroid.ui.VacanciesRecyclerAdapter
 import com.example.testtaskandroid.utils.vacancyDeclension
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class FavouritesFragment : Fragment(), ClickListener {
 
     companion object {
@@ -32,7 +33,6 @@ class FavouritesFragment : Fragment(), ClickListener {
 
     private lateinit var linearLayoutManagerVacanciesFavourites : LinearLayoutManager
 
-    private val favouritesViewModel: FavouritesViewModel by viewModels()
     private val mainViewModel: MainViewModel by activityViewModels()
 
     private val vacanciesRecyclerAdapter by lazy {

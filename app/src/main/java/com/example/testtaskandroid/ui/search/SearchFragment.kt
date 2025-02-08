@@ -20,7 +20,9 @@ import com.example.testtaskandroid.ui.MainViewModel
 import com.example.testtaskandroid.ui.OffersRecyclerAdapter
 import com.example.testtaskandroid.ui.VacanciesRecyclerAdapter
 import com.example.testtaskandroid.utils.vacancyDeclension
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SearchFragment : Fragment(), ClickListener {
 
     companion object {

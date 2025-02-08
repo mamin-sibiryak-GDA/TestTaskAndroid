@@ -7,19 +7,18 @@ import androidx.lifecycle.viewModelScope
 import com.example.testtaskandroid.data.entities.Offer
 import com.example.testtaskandroid.data.repository.OffersVacanciesRepository
 import com.example.testtaskandroid.data.entities.Vacancy
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-open class MainViewModel : ViewModel() {
+@HiltViewModel
+class MainViewModel @Inject constructor(private val offersVacanciesRepository: OffersVacanciesRepository) : ViewModel() {
 
     private val _offers = MutableLiveData<List<Offer>>()
     val offers: LiveData<List<Offer>> = _offers
 
     private val _vacancies = MutableLiveData<List<Vacancy>>()
     val vacancies: LiveData<List<Vacancy>> = _vacancies
-
-    private val offersVacanciesRepository by lazy {
-        OffersVacanciesRepository()
-    }
 
     fun getOffers() {
         viewModelScope.launch {
